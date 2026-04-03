@@ -6,7 +6,7 @@ import axios from "axios";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 const AUTH_CACHE_KEY = "ls_auth_user"; // sessionStorage key
 
 // ─── helpers ────────────────────────────────────────────────────────────────
