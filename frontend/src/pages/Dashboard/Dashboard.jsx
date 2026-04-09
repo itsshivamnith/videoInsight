@@ -6,7 +6,7 @@ import QuizHistory from "./components/QuizHistory";
 import { useAuth } from "../../hooks/useAuth";
 import { motion } from "framer-motion";
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 function SkeletonBlock({ className = "" }) {
   return (

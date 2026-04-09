@@ -54,7 +54,7 @@ function storageClear(...keys) {
   });
 }
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 function isMongoObjectId(str) {
   return /^[0-9a-fA-F]{24}$/.test(str);

@@ -20,7 +20,7 @@ import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import NowPlayingWidget from "./components/NowPlayingWidget";
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 export default function App() {
   const { isAuthenticated } = useAuth();

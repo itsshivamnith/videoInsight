@@ -5,7 +5,7 @@ import VideoCard from "./VideoCard";
 import PlaylistCard from "./PlaylistCard";
 import FilterBar from "./FilterBar";
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 let feedCache = {
   items: [],

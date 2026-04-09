@@ -5,7 +5,7 @@ import { Play, Clock, AlertCircle, BookOpen, ChevronRight, Zap } from "lucide-re
 import { motion } from "framer-motion";
 import { useAuth } from "../../hooks/useAuth";
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 function SkeletonBlock({ width = "w-full", height = "h-4", className = "" }) {
   return (

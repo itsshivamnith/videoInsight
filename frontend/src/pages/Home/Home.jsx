@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, X, Youtube, Sparkles, Clipboard, FileText, BrainCircuit, Zap } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-const BASE_URL = "";
+const BASE_URL = import.meta.env.VITE_API_URL ?? "";
 const AUTH_ROUTE = "/profile";
 
 function isYouTubeUrl(value) {
