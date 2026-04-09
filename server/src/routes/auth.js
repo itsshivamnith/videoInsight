@@ -88,7 +88,7 @@ router.get("/logout", (req, res, next) => {
         path: "/",
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
       res.redirect(process.env.CLIENT_URL);

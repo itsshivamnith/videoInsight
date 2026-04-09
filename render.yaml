@@ -13,11 +13,11 @@ services:
       - key: PORT
         value: 8000
       - key: SERVER_URL
-        sync: false
+        value: https://videoinsight-9ma9.onrender.com
       - key: CLIENT_URL
-        sync: false
+        value: https://video-insight-five.vercel.app
       - key: MONGO_URI
-        sync: false
+        value: mongodb://shivamnith098_db_user:qYePk1R3M3aIOL11@ac-laatph9-shard-00-00.oazj7fk.mongodb.net:27017,ac-laatph9-shard-00-01.oazj7fk.mongodb.net:27017,ac-laatph9-shard-00-02.oazj7fk.mongodb.net:27017/videoinsight?ssl=true&replicaSet=atlas-lex327-shard-0&authSource=admin&appName=Cluster0
       - key: SESSION_SECRET
         generateValue: true
       - key: NODE_ENV
@@ -27,19 +27,4 @@ services:
       - key: TRANSCRIPT_LANGS
         value: en,en-US,en-GB,en-IN,hi
 
-  # --------------------------------------------------------------------------------
-  # FRONTEND (Static Site)
-  # --------------------------------------------------------------------------------
-  - type: static
-    name: videoinsight-frontend
-    env: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: ./frontend/dist
-    plan: free
-    region: oregon
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: videoinsight-backend
-          property: url
+

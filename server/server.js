@@ -56,7 +56,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax", // ✅ Lax is fine because it's now a First-Party cookie via proxy
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // 'lax' for localhost, 'none' for cross-domain prod
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
     },
   }),
@@ -95,5 +95,5 @@ app.get("/private", (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
