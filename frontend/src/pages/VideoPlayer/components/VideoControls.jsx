@@ -52,7 +52,7 @@ const VideoControls = ({
   ];
 
   return (
-    <div className="flex flex-row gap-2 mb-2 bg-gray-100/50 p-1 rounded-xl border border-gray-200/50">
+    <div className="flex flex-row gap-2 mb-2 bg-elevated/50 p-1 rounded-xl border border-theme/50">
       {buttons.map((btn) => {
         const isActive = viewMode === btn.id;
         return (
@@ -64,8 +64,8 @@ const VideoControls = ({
             disabled={btn.disabled}
             className={`relative flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-2 py-2.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 min-w-0 touch-manipulation active:scale-95 ${
               isActive
-                ? "bg-white text-indigo-600 shadow-sm shadow-indigo-100 ring-1 ring-black/5"
-                : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
+                ? "bg-surface text-[var(--accent)] shadow-theme-sm shadow-indigo-100 ring-1 ring-black/5"
+                : "text-secondary hover:bg-surface/60 hover:text-primary"
             } ${btn.disabled ? "opacity-50 cursor-not-allowed" : ""}`}
             style={{ WebkitTapHighlightColor: "transparent" }}
           >

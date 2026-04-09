@@ -64,13 +64,13 @@ function parseInline(text) {
 
     if (first.type === "bold") {
       parts.push(
-        <strong key={key++} className="font-semibold text-gray-900">
+        <strong key={key++} className="font-semibold text-primary">
           {first.inner}
         </strong>,
       );
     } else if (first.type === "italic") {
       parts.push(
-        <em key={key++} className="italic text-gray-700">
+        <em key={key++} className="italic text-primary">
           {first.inner}
         </em>,
       );
@@ -78,7 +78,7 @@ function parseInline(text) {
       parts.push(
         <code
           key={key++}
-          className="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 font-mono text-[0.8em] border border-indigo-100"
+          className="px-1.5 py-0.5 rounded bg-[var(--accent-subtle)] text-[var(--accent-hover)] font-mono text-[0.8em] border border-theme"
         >
           {first.inner}
         </code>,
@@ -128,7 +128,7 @@ export default function MarkdownRenderer({ content }) {
       elements.push(
         <hr
           key={key++}
-          className="my-5 border-t border-dashed border-indigo-100"
+          className="my-5 border-t border-dashed border-theme"
         />,
       );
       i++;
@@ -140,7 +140,7 @@ export default function MarkdownRenderer({ content }) {
       elements.push(
         <h3
           key={key++}
-          className="mt-5 mb-2 text-sm font-bold text-indigo-700 uppercase tracking-wide flex items-center gap-1.5"
+          className="mt-5 mb-2 text-sm font-bold text-[var(--accent-hover)] uppercase tracking-wide flex items-center gap-1.5"
         >
           <span className="inline-block w-1 h-4 rounded-full bg-indigo-500 shrink-0" />
           {parseInline(line.slice(4))}
@@ -155,7 +155,7 @@ export default function MarkdownRenderer({ content }) {
       elements.push(
         <h4
           key={key++}
-          className="mt-4 mb-1.5 text-sm font-semibold text-gray-800"
+          className="mt-4 mb-1.5 text-sm font-semibold text-primary"
         >
           {parseInline(line.slice(5))}
         </h4>,
@@ -169,7 +169,7 @@ export default function MarkdownRenderer({ content }) {
       elements.push(
         <h2
           key={key++}
-          className="mt-6 mb-2 text-base font-bold text-gray-900 border-b border-gray-200 pb-1"
+          className="mt-6 mb-2 text-base font-bold text-primary border-b border-theme pb-1"
         >
           {parseInline(line.slice(3))}
         </h2>,
@@ -181,7 +181,7 @@ export default function MarkdownRenderer({ content }) {
     // ── H1 # ───────────────────────────────────────────────────────────────
     if (line.startsWith("# ")) {
       elements.push(
-        <h1 key={key++} className="mt-4 mb-2 text-lg font-bold text-gray-900">
+        <h1 key={key++} className="mt-4 mb-2 text-lg font-bold text-primary">
           {parseInline(line.slice(2))}
         </h1>,
       );
@@ -194,7 +194,7 @@ export default function MarkdownRenderer({ content }) {
       elements.push(
         <blockquote
           key={key++}
-          className="my-2 pl-3 border-l-4 border-indigo-300 text-gray-600 italic text-sm bg-indigo-50/50 py-1 pr-2 rounded-r-lg"
+          className="my-2 pl-3 border-l-4 border-indigo-300 text-secondary italic text-sm bg-[var(--accent-subtle)]/50 py-1 pr-2 rounded-r-lg"
         >
           {parseInline(line.slice(2))}
         </blockquote>,
@@ -213,7 +213,7 @@ export default function MarkdownRenderer({ content }) {
         items.push(
           <li
             key={items.length}
-            className={`flex gap-2 text-gray-700 text-sm leading-relaxed ${itemIndent > indent ? "ml-5" : ""}`}
+            className={`flex gap-2 text-primary text-sm leading-relaxed ${itemIndent > indent ? "ml-5" : ""}`}
           >
             <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-indigo-400" />
             <span>{parseInline(text)}</span>
@@ -238,9 +238,9 @@ export default function MarkdownRenderer({ content }) {
         items.push(
           <li
             key={items.length}
-            className="flex gap-2.5 text-gray-700 text-sm leading-relaxed"
+            className="flex gap-2.5 text-primary text-sm leading-relaxed"
           >
-            <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
+            <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-[var(--accent-subtle)] text-[var(--accent-hover)] text-xs font-bold flex items-center justify-center">
               {num++}
             </span>
             <span>{parseInline(text)}</span>
@@ -264,7 +264,7 @@ export default function MarkdownRenderer({ content }) {
 
     // ── Regular paragraph ──────────────────────────────────────────────────
     elements.push(
-      <p key={key++} className="text-sm text-gray-700 leading-relaxed my-1">
+      <p key={key++} className="text-sm text-primary leading-relaxed my-1">
         {parseInline(line)}
       </p>,
     );

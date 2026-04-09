@@ -33,9 +33,9 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
 
   if (loading) {
     return (
-      <div className="p-5 border rounded-2xl bg-white shadow-lg shadow-indigo-50/50 min-h-[200px] flex flex-col items-center justify-center">
+      <div className="p-5 border rounded-2xl bg-surface shadow-lg shadow-indigo-50/50 min-h-[200px] flex flex-col items-center justify-center">
         <div className="animate-spin text-4xl mb-4">⏳</div>
-        <p className="font-medium text-gray-600">
+        <p className="font-medium text-secondary">
           Generating quiz ({difficulty})...
         </p>
       </div>
@@ -44,8 +44,8 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
 
   if (!quiz || quiz.length === 0) {
     return (
-      <div className="p-5 border rounded-2xl bg-white shadow-lg shadow-indigo-50/50 min-h-[200px] flex flex-col items-center justify-center">
-        <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+      <div className="p-5 border rounded-2xl bg-surface shadow-lg shadow-indigo-50/50 min-h-[200px] flex flex-col items-center justify-center">
+        <h3 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
           <span className="text-emerald-500">🧠</span> Generate Quiz
         </h3>
 
@@ -57,7 +57,7 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
               className={`px-4 py-2 rounded-lg capitalize transition-all ${
                 difficulty === level
                   ? "bg-emerald-500 text-white shadow-md scale-105"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-elevated text-secondary hover:bg-elevated"
               }`}
             >
               {level}
@@ -80,14 +80,14 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
   }, 0);
 
   return (
-    <div className="p-5 border rounded-2xl bg-white shadow-lg shadow-indigo-50/50 min-h-[200px]">
+    <div className="p-5 border rounded-2xl bg-surface shadow-lg shadow-indigo-50/50 min-h-[200px]">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+        <h3 className="text-xl font-bold text-primary flex items-center gap-2">
           <span className="text-emerald-500">🧠</span> Quiz
         </h3>
         <button
           onClick={resetQuiz}
-          className="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all"
+          className="p-2 text-muted hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all"
           title="Regenerate Quiz"
         >
           <RefreshCw size={20} />
@@ -98,9 +98,9 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
         {quiz.map((q, i) => (
           <div
             key={i}
-            className="p-4 bg-gray-50 rounded-xl border border-gray-100"
+            className="p-4 bg-primary rounded-xl border border-theme"
           >
-            <p className="font-medium text-gray-800 mb-3">
+            <p className="font-medium text-primary mb-3">
               {i + 1}. {q.question}
             </p>
             <div className="space-y-2">
@@ -118,14 +118,14 @@ const QuizBox = ({ quiz, loading, onRetry, onQuizComplete }) => {
                     btnClass += "bg-red-50 border-red-200 text-red-700";
                   else
                     btnClass +=
-                      "bg-white border-gray-200 text-gray-500 opacity-60";
+                      "bg-surface border-theme text-secondary opacity-60";
                 } else {
                   if (isSelected)
                     btnClass +=
                       "bg-emerald-50 border-emerald-200 text-emerald-700 font-medium ring-1 ring-emerald-200";
                   else
                     btnClass +=
-                      "bg-white border-gray-200 text-gray-600 hover:bg-gray-100 hover:border-gray-300";
+                      "bg-surface border-theme text-secondary hover:bg-elevated hover:border-gray-300";
                 }
 
                 return (

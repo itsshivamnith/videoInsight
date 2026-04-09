@@ -81,7 +81,7 @@ const VideoFrame = ({
 
   if (!videoId) {
     return (
-      <div className="w-full h-64 flex items-center justify-center text-gray-400 border rounded-lg">
+      <div className="w-full h-64 flex items-center justify-center text-muted border rounded-lg">
         🎥 Select a video to load
       </div>
     );

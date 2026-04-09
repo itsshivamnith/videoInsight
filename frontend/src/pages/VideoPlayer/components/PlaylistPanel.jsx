@@ -26,7 +26,7 @@ const PlaylistPanel = ({
         {[1, 2, 3, 4, 5].map((i) => (
           <div
             key={i}
-            className={`w-full h-20 animate-pulse rounded-lg ${variant === "glass" ? "bg-white/10" : "bg-gray-200"}`}
+            className={`w-full h-20 animate-pulse rounded-lg ${variant === "glass" ? "bg-surface/10" : "bg-elevated"}`}
           ></div>
         ))}
       </div>
@@ -36,7 +36,7 @@ const PlaylistPanel = ({
   if (!videos || videos.length === 0) {
     return (
       <div
-        className={`flex flex-col items-center justify-center py-10 ${variant === "glass" ? "text-gray-400" : "text-gray-400"}`}
+        className={`flex flex-col items-center justify-center py-10 ${variant === "glass" ? "text-muted" : "text-muted"}`}
       >
         <p>No videos in this playlist.</p>
       </div>
@@ -53,14 +53,14 @@ const PlaylistPanel = ({
 
         if (variant === "glass") {
           containerClass = isActive
-            ? "bg-indigo-50/90 border-indigo-200 shadow-sm"
-            : "bg-transparent border-transparent hover:bg-gray-100/80 hover:border-gray-200/50";
-          textClass = isActive ? "text-indigo-700" : "text-gray-800";
+            ? "bg-[var(--accent-subtle)]/90 border-theme shadow-theme-sm"
+            : "bg-transparent border-transparent hover:bg-elevated/80 hover:border-theme/50";
+          textClass = isActive ? "text-[var(--accent-hover)]" : "text-primary";
         } else {
           containerClass = isActive
-            ? "bg-indigo-50 border-indigo-200 shadow-sm"
-            : "bg-white border-transparent hover:bg-gray-50 hover:border-gray-200";
-          textClass = isActive ? "text-indigo-700" : "text-gray-700";
+            ? "bg-[var(--accent-subtle)] border-theme shadow-theme-sm"
+            : "bg-surface border-transparent hover:bg-primary hover:border-theme";
+          textClass = isActive ? "text-[var(--accent-hover)]" : "text-primary";
         }
 
         return (
@@ -71,7 +71,7 @@ const PlaylistPanel = ({
             className={`group flex items-center gap-3 p-3 sm:p-2 rounded-xl transition-all cursor-pointer border ${containerClass}`}
           >
             {/* Thumbnail */}
-            <div className="relative w-24 aspect-video bg-black rounded-lg overflow-hidden shrink-0 shadow-sm">
+            <div className="relative w-24 aspect-video bg-black rounded-lg overflow-hidden shrink-0 shadow-theme-sm">
               <img
                 src={
                   video.thumbnailUrl ||
@@ -84,7 +84,7 @@ const PlaylistPanel = ({
               />
               {isActive && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                  <div className="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center shadow-md animate-pulse">
+                  <div className="w-6 h-6 bg-[var(--accent)] rounded-full flex items-center justify-center shadow-md animate-pulse">
                     <Play size={10} className="text-white ml-0.5" />
                   </div>
                 </div>

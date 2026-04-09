@@ -588,7 +588,7 @@ const Player = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-[calc(100vh-64px)] bg-gray-50 overflow-hidden relative">
+    <div className="flex flex-col lg:flex-row h-[calc(100vh-64px)] bg-primary overflow-hidden relative">
       {/* Playlist Sidebar Overlay */}
       <AnimatePresence>
         {playlistVideos.length > 0 && isPlaylistOpen && (
@@ -597,18 +597,18 @@ const Player = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -320, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="absolute left-0 top-0 bottom-0 w-72 sm:w-80 bg-white/50 backdrop-blur-md border-r border-gray-200/50 z-[60] flex flex-col shadow-2xl rounded-r-3xl overflow-hidden"
+            className="absolute left-0 top-0 bottom-0 w-72 sm:w-80 glass backdrop-blur-md border-r border-theme/50 z-[60] flex flex-col shadow-2xl rounded-r-3xl overflow-hidden"
           >
-            <div className="p-2 border-b border-gray-200/50 flex justify-between items-center bg-gray-50/30">
+            <div className="p-2 border-b border-theme/50 flex justify-between items-center bg-primary/30">
               <h3
-                className="text-gray-800 font-bold text-sm sm:text-base ml-1 truncate pr-2"
+                className="text-primary font-bold text-sm sm:text-base ml-1 truncate pr-2"
                 title={playlistTitle}
               >
                 {playlistTitle}
               </h3>
               <button
                 onClick={() => setIsPlaylistOpen(false)}
-                className="text-gray-500 hover:text-gray-800 p-1 rounded-full hover:bg-gray-200 transition-colors"
+                className="text-secondary hover:text-primary p-1 rounded-full hover:bg-elevated transition-colors"
                 title="Close"
               >
                 <X size={18} />
@@ -635,7 +635,7 @@ const Player = () => {
           animate={{ x: 0, opacity: 1 }}
           whileHover={{ scale: 1.05 }}
           onClick={() => setIsPlaylistOpen(true)}
-          className="absolute left-0 top-24 z-50 bg-white/80 backdrop-blur-md text-indigo-600 p-3 rounded-r-xl border-y border-r border-indigo-100 hover:bg-indigo-50 shadow-lg group transition-all"
+          className="absolute left-0 top-24 z-50 bg-surface/80 backdrop-blur-md text-[var(--accent)] p-3 rounded-r-xl border-y border-r border-theme hover:bg-[var(--accent-subtle)] shadow-lg group transition-all"
           title="Show Playlist"
         >
           <List size={24} />
@@ -646,7 +646,7 @@ const Player = () => {
       <div className="w-full lg:flex-1 flex flex-col shrink-0 lg:shrink bg-black lg:bg-transparent justify-center lg:justify-start p-0 lg:p-6 overflow-visible">
         <div className="w-full aspect-video bg-black lg:rounded-2xl shadow-lg overflow-hidden flex items-center justify-center relative z-10">
           {loading ? (
-            <SkeletonLoader className="w-full h-full bg-gray-800" />
+            <SkeletonLoader className="w-full h-full bg-primary border border-theme" />
           ) : activeVideoId ? (
             <VideoFrame
               key={activeVideoId}
@@ -656,12 +656,12 @@ const Player = () => {
               onTimeUpdate={handleTimeUpdate}
             />
           ) : (
-            <p className="text-gray-400">🎬 No video selected</p>
+            <p className="text-muted">🎬 No video selected</p>
           )}
         </div>
         {entry && (
-          <div className="p-4 lg:p-0 lg:mt-4 bg-white lg:bg-transparent border-b lg:border-none border-gray-100 flex justify-between items-start gap-4">
-            <h2 className="text-lg lg:text-2xl font-bold text-gray-800 leading-tight line-clamp-2 flex-1">
+          <div className="p-4 lg:p-0 lg:mt-4 bg-surface lg:bg-transparent border-b lg:border-none border-theme flex justify-between items-start gap-4">
+            <h2 className="text-lg lg:text-2xl font-bold text-primary leading-tight line-clamp-2 flex-1">
               {entry.title}
             </h2>
 
@@ -675,7 +675,7 @@ const Player = () => {
                       (v) => v.videoId === activeVideoId,
                     ) <= 0
                   }
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium shadow-sm hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border border-theme text-primary font-medium shadow-theme-sm hover:bg-[var(--accent-subtle)] hover:text-[var(--accent)] hover:border-theme disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   title="Previous Video"
                 >
                   <ChevronLeft size={20} />
@@ -689,7 +689,7 @@ const Player = () => {
                     ) >=
                     playlistVideos.length - 1
                   }
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-200 hover:bg-indigo-700 hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--accent)] text-white font-medium shadow-md shadow-indigo-200 hover:bg-indigo-700 hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:bg-gray-300 disabled:cursor-not-allowed transition-all"
                   title="Next Video"
                 >
                   <span className="hidden sm:inline text-sm">Next</span>
@@ -702,9 +702,9 @@ const Player = () => {
       </div>
 
       {/* Right: tools */}
-      <div className="flex-1 w-full lg:flex-none lg:w-[400px] xl:w-[450px] bg-white shadow-xl border-l border-gray-100 flex flex-col z-20 overflow-hidden">
+      <div className="flex-1 w-full lg:flex-none lg:w-[400px] xl:w-[450px] bg-surface shadow-xl border-l border-theme flex flex-col z-20 overflow-hidden">
         {/* Header / Controls */}
-        <div className="p-3 lg:p-6 border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-30">
+        <div className="p-3 lg:p-6 border-b border-theme bg-surface/80 backdrop-blur-md sticky top-0 z-30">
           {err && (
             <div className="mb-3 p-3 text-sm rounded-lg bg-red-50 text-red-700 border border-red-200">
               {err}
@@ -731,12 +731,12 @@ const Player = () => {
               hasTranscript={!!transcript}
             />
           ) : (
-            <p className="text-gray-500 text-center py-4">No video loaded.</p>
+            <p className="text-secondary text-center py-4">No video loaded.</p>
           )}
         </div>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar bg-gray-50/50">
+        <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar bg-primary/50">
           {embedUrl && !loading && (
             <AnimatePresence mode="wait">
               {viewMode === "transcript" &&
@@ -791,7 +791,7 @@ const Player = () => {
         </div>
 
         {/* Footer / Back Button */}
-        <div className="p-3 lg:p-4 border-t border-gray-100 bg-white">
+        <div className="p-3 lg:p-4 border-t border-theme bg-surface">
           <button
             onClick={() => {
               try {
@@ -801,7 +801,7 @@ const Player = () => {
               }
               navigate(-1);
             }}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gray-50 text-gray-700 font-medium rounded-xl shadow-sm border border-gray-200 hover:bg-gray-100 hover:text-indigo-600 transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary font-medium rounded-xl shadow-theme-sm border border-theme hover:bg-elevated hover:text-[var(--accent)] transition-all duration-200"
           >
             <span>⬅</span>{" "}
             <span className="hidden sm:inline">Back to Dashboard</span>
