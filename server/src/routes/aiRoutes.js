@@ -16,7 +16,7 @@ const cleanTranscript = (transcript) => {
  * Only 503 / 429 (capacity / rate-limit) trigger a single same-model retry.
  * Any other error immediately falls through to the next model.
  */
-const MODELS = ["gemini-2.5-flash"];
+const MODELS = ["gemini-2.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-flash"];
 
 async function generateWithFallback(apiKey, prompt, generationConfig = {}) {
   const genAI = new GoogleGenerativeAI(apiKey);
