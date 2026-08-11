@@ -1,170 +1,300 @@
-# VideoInsight
+# 🎬 VideoInsight
 
-[🌐 Live Demo](https://videoinsight.netlify.app) | [🐞 Report Bug](https://github.com/Saheb142003/VideoInsight/issues) | [✨ Request Feature](https://github.com/Saheb142003/VideoInsight/issues)
+### AI-Powered YouTube Learning Platform
 
----
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb)](https://mongodb.com)
+[![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?style=flat-square&logo=google)](https://ai.google.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
-![Stars](https://img.shields.io/github/stars/Saheb142003/VideoInsight?style=for-the-badge)
-![Forks](https://img.shields.io/github/forks/Saheb142003/VideoInsight?style=for-the-badge)
-![License](https://img.shields.io/github/license/Saheb142003/VideoInsight?style=for-the-badge)
-![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Node](https://img.shields.io/badge/Node.js-20.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+**VideoInsight turns any YouTube video or playlist into an interactive learning experience** — instant transcripts, AI-generated summaries, auto-graded quizzes, flashcards, and a full learning dashboard. No distractions, no recommendations, just focused study.
 
-**VideoInsight** is an **AI-powered educational platform** that transforms passive video watching into an interactive learning experience. Paste any YouTube URL and get an instant transcript, AI-generated summary, and auto-graded quiz — no distractions, no ads.
-
-- **Tech Stack:** React 19, Tailwind CSS, Node.js, Express, MongoDB, Google Gemini AI
-- **Live Site:** [https://videoinsight.netlify.app](https://videoinsight.netlify.app)
+🔗 **Live App:** [video-insight-five.vercel.app](https://video-insight-five.vercel.app)
 
 ---
 
-## 📸 Screenshots
+## 📋 Table of Contents
 
-|                **Home Page**                |                  **Feed**                  |
-| :-----------------------------------------: | :----------------------------------------: |
-|   ![Home Page](frontend/assets/Home.png)    |     ![Feed](frontend/assets/Feed.JPG)      |
-| _Transform videos into knowledge instantly_ | _Discover and track your learning journey_ |
+1. [Why VideoInsight](#-why-videoinsight)
+2. [Key Features](#-key-features)
+3. [Tech Stack](#-tech-stack)
+4. [Architecture](#-architecture)
+5. [Getting Started](#-getting-started)
+6. [Environment Variables](#-environment-variables)
+7. [Project Structure](#-project-structure)
+8. [API Overview](#-api-overview)
+9. [Roadmap](#-roadmap)
+10. [Contributing](#-contributing)
+11. [License](#-license)
+12. [Contact](#-contact)
 
 ---
 
-In the age of endless content, **retention** is the real challenge. Students and professionals watch hours of tutorials but often struggle to recall key concepts or test their understanding.
+## 💡 Why VideoInsight
 
-**VideoInsight solves this by:**
+In an age of endless video content, **retention** — not access — is the real bottleneck. People watch hours of tutorials but struggle to recall the key ideas or test whether they actually understood anything.
 
-1. **Removing Distractions**: No sidebar recommendations or ads.
-2. **Active Recall**: AI-generated quizzes force you to test your knowledge immediately.
-3. **Quick Review**: Summaries and transcripts allow for rapid revision without re-watching.
+VideoInsight fixes this by:
 
-If you support this mission, leaving a ⭐ helps others discover the project!
+- **Removing distractions** — a clean player with no sidebar recommendations or ads
+- **Forcing active recall** — AI-generated quizzes and flashcards test your understanding immediately
+- **Enabling fast review** — summaries and timestamp-linked transcripts let you revisit key points without rewatching the whole video
 
 ---
 
 ## 🚀 Key Features
 
-| Feature                 | Description                                             |
-| ----------------------- | ------------------------------------------------------- |
-| **AI Transcripts**      | Fetched via `youtube_transcript_api` — works reliably   |
-| **Smart Summaries**     | AI-generated summaries with full markdown rendering     |
-| **Interactive Quizzes** | Auto-generated 5-question quizzes to test retention     |
-| **Distraction Free**    | Clean player interface focused on learning              |
-| **Progress Tracking**   | Track watched videos, quiz scores, and learning streaks |
-| **Playlist Support**    | Import entire YouTube playlists                         |
-| **Secure Auth**         | Google OAuth & Local Authentication                     |
-| **Responsive Design**   | Works seamlessly on desktop and mobile                  |
-| **Rate Limited API**    | Per-IP & per-user limits protect backend from abuse     |
+| Feature | Description |
+|---|---|
+| **AI Transcripts** | Reliable transcript fetching with a dual-provider fallback pipeline |
+| **Smart Summaries** | Gemini-generated summaries rendered as clean markdown, in a "teacher mode" tone |
+| **Interactive Quizzes** | Auto-generated 5-question multiple-choice quizzes with difficulty levels |
+| **Flashcards** | Active-recall flashcards with flip animations |
+| **Playlist Import** | Import entire YouTube playlists, not just single videos |
+| **Progress Dashboard** | Watch time, quiz history, daily streaks, and topic mastery, visualized with charts |
+| **Community Feed** | Discover public playlists shared by other learners |
+| **Secure Auth** | Google OAuth via Passport.js, with session-based authentication |
+| **Rate Limiting** | Per-IP and per-user limits protect the backend from abuse |
+| **Responsive Design** | Works cleanly across desktop and mobile |
 
 ---
 
-## 🧪 Tech & Architecture
+## 🧪 Tech Stack
 
-This project is a **Monorepo** with a React frontend and an Express backend.
+### Frontend
+- **React 19** + **Vite** — fast dev server and builds
+- **React Router v7** — client-side routing
+- **Tailwind CSS v4** — utility-first styling
+- **Framer Motion** — page transitions and animations
+- **Recharts** — dashboard analytics charts
+- **Lucide React** — icon set
+- **Axios** — HTTP client
+- **React Helmet Async** — per-page SEO meta tags
 
-### **Frontend**
+### Backend
+- **Node.js + Express** — REST API server
+- **MongoDB + Mongoose** — primary data store
+- **Passport.js (Google OAuth2)** — authentication
+- **express-session + connect-mongo** — persistent, MongoDB-backed sessions
+- **Google Generative AI SDK (Gemini)** — summaries, quizzes, flashcards, translation
+- **youtube-transcript-api (Python)** — transcript extraction, with an Invidious-based fallback
 
-- **Framework:** React 19 (Vite)
-- **Styling:** Tailwind CSS v4, Framer Motion
-- **Icons:** Lucide React
-- **State/Routing:** React Router v7, Context API
-- **SEO:** React Helmet Async
+### External Services
+- YouTube Data API v3 (metadata, playlists, durations)
+- Google Gemini AI (multi-model cascade with automatic fallback)
+- Google OAuth 2.0 (authentication)
 
-### **Backend**
+### Infrastructure
+- **MongoDB Atlas** — hosted database
+- **Vercel** — frontend hosting
+- **Render** (Docker) — backend hosting, running Node.js + Python together
 
-- **Runtime:** Node.js
-- **Framework:** Express.js
-- **Database:** MongoDB (Mongoose)
-- **AI Engine:** Google Gemini API (multi-model cascade with fallback)
-- **Authentication:** Passport.js (Google OAuth)
-- **Transcript Engine:** `youtube_transcript_api` (Python ≥1.2.4) + Invidious fallback
-- **Concurrency:** In-memory semaphore, request queue, in-flight deduplication, LRU cache
+---
+
+## 🏗️ Architecture
+
+```
+┌────────────────────────────┐
+│   Frontend (Vercel)        │
+│   React 19 + Vite + Tailwind│
+└──────────────┬─────────────┘
+               │ HTTPS (credentials: include)
+┌──────────────▼─────────────────────────────┐
+│   Backend (Render, Docker)                  │
+│   Express + Passport.js + Sessions          │
+│                                              │
+│   /auth/*        Google OAuth               │
+│   /api/playlists CRUD for imported content  │
+│   /api/videos    Transcript fetching        │
+│   /api/ai        Gemini-powered features    │
+│   /api/user      Tracking + dashboard data  │
+│   /api/feed      Community feed             │
+│                                              │
+│   Transcript layer: LRU cache + in-flight   │
+│   dedup + request queue + semaphore         │
+└──────────┬───────────────────┬──────────────┘
+           │                   │
+   ┌───────▼──────┐   ┌────────▼─────────────┐
+   │ MongoDB Atlas │   │ YouTube Data API v3  │
+   │ Users/Playlists│   │ Google Gemini AI     │
+   │ Sessions       │   │ (multi-model fallback)│
+   └───────────────┘   └───────────────────────┘
+```
+
+**A few notable design choices:**
+- **Session-based auth over JWT** — fits the OAuth redirect flow naturally and allows server-side logout/invalidation.
+- **Dual transcript provider** — `youtube-transcript-api` in production, with a fallback path (Invidious) for resilience when YouTube blocks scraping from cloud IPs.
+- **Multi-model Gemini fallback chain** — if one model is rate-limited or overloaded (429/503), the request cascades to the next model, keeping AI features highly available.
+- **In-flight request deduplication + LRU cache** — concurrent requests for the same video's transcript share a single in-flight promise, and results are cached in memory to avoid redundant calls.
+
+---
 
 ## 🛠️ Getting Started
 
-Follow these steps to run VideoInsight locally.
-
 ### Prerequisites
+- Node.js 18+
+- Python 3.9+ with `youtube-transcript-api` installed
+- MongoDB (local or Atlas)
+- Google Gemini API key
+- Google OAuth 2.0 credentials
 
-- Node.js (v18+)
-- Python 3.9+ with `youtube_transcript_api` installed
-- MongoDB (Local or Atlas URI)
-- Google Gemini API Key
-- Google OAuth credentials
+### 1. Clone the repository
+```bash
+git clone https://github.com/itsshivamnith/videoInsight.git
+cd videoInsight
+```
 
-### Installation
+### 2. Install dependencies
+```bash
+# Python dependency (transcript fetching)
+pip install youtube-transcript-api
 
-1. **Clone the repository**
+# Backend
+cd server && npm install
 
-   ```bash
-   git clone https://github.com/Saheb142003/VideoInsight.git
-   cd VideoInsight
-   ```
+# Frontend
+cd ../frontend && npm install
+```
 
-2. **Install Python dependency** (required for transcript fetching)
+### 3. Configure environment variables
+Create `server/.env` (see [Environment Variables](#-environment-variables) below), and `frontend/.env` with:
+```env
+VITE_API_URL=http://localhost:8000
+```
 
-   ```bash
-   pip install youtube-transcript-api
-   ```
+### 4. Run locally
+```bash
+# Terminal 1 — Backend
+cd server
+npm start        # runs on http://localhost:8000
 
-3. **Install Node dependencies**
+# Terminal 2 — Frontend
+cd frontend
+npm run dev       # runs on http://localhost:5173
+```
 
-   ```bash
-   # Frontend
-   cd frontend && npm install
+Open **http://localhost:5173** in your browser.
 
-   # Backend
-   cd ../server && npm install
-   ```
+---
 
-4. **Environment Setup** — create `server/.env`:
+## 🔐 Environment Variables
 
-   ```env
-   PORT=5000
-   CLIENT_URL=http://localhost:5173
-   MONGO_URI=your_mongodb_connection_string
+### `server/.env`
+```env
+PORT=8000
+NODE_ENV=development
 
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
-   SESSION_SECRET=your_session_secret
+MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/videoinsight
+SESSION_SECRET=your-super-secret-key
 
-   GEMINI_API_KEY_SUMMARY=your_gemini_api_key
-   GEMINI_API_KEY_QUIZ=your_gemini_api_key
-   YOUTUBE_API_KEY=your_youtube_data_api_key
+SERVER_URL=http://localhost:8000
+CLIENT_URL=http://localhost:5173
 
-   # Optional tuning (safe defaults apply without these)
-   TRANSCRIPT_CONCURRENCY=3
-   TRANSCRIPT_QUEUE_DEPTH=20
-   TRANSCRIPT_TIMEOUT_MS=30000
-   ```
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-5. **Run the application** — open two terminals:
+YOUTUBE_API_KEY=your_youtube_data_api_key
 
-   ```bash
-   # Terminal 1 — Backend
-   cd server && npm start
+GEMINI_API_KEY_SUMMARY=your_gemini_api_key
+GEMINI_API_KEY_QUIZ=your_gemini_api_key
 
-   # Terminal 2 — Frontend
-   cd frontend && npm start
-   ```
+# Optional tuning — safe defaults apply if omitted
+TRANSCRIPT_CONCURRENCY=3
+TRANSCRIPT_QUEUE_DEPTH=20
+TRANSCRIPT_TIMEOUT_MS=30000
+TRANSCRIPT_LANGS=en,en-US,en-GB,en-IN,hi
+PYTHON_BIN=python3
+```
 
-6. Open [http://localhost:5173](http://localhost:5173) in your browser.
+### `frontend/.env`
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+> ⚠️ Never commit `.env` files. Use `.env.example` templates for sharing structure without secrets.
+
+---
+
+## 📂 Project Structure
+
+```
+videoInsight/
+├── frontend/          # React 19 + Vite SPA
+│   ├── src/
+│   │   ├── pages/     # Home, Feed, Playlist, Player, Dashboard, Profile...
+│   │   ├── components/
+│   │   └── context/   # Auth context, etc.
+│   └── assets/        # Screenshots, icons
+├── server/             # Express API
+│   ├── src/
+│   │   ├── config/    # Passport strategy, DB connection
+│   │   ├── routes/    # auth, playlists, videos, ai, user, feed
+│   │   ├── services/  # Transcript service (cache, dedup, providers)
+│   │   └── models/    # Mongoose schemas (User, Playlist)
+│   └── Dockerfile      # Multi-runtime: Node.js + Python
+├── render.yaml
+├── DEPLOY.md
+└── README.md
+```
+
+---
+
+## 🔌 API Overview
+
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| GET | `/auth/google` | – | Start Google OAuth flow |
+| GET | `/auth/google/callback` | – | OAuth callback, creates session |
+| GET | `/auth/login/success` | – | Check current auth status |
+| GET | `/auth/logout` | ✅ | Destroy session |
+| POST | `/api/playlists` | ✅ | Import a YouTube playlist/video |
+| GET | `/api/playlists` | ✅ | List the user's imported playlists |
+| GET | `/api/videos/:videoId/transcript` | – | Fetch (cached) transcript |
+| POST | `/api/ai/summarize` | – | Generate an AI summary |
+| POST | `/api/ai/quiz` | – | Generate a 5-question quiz |
+| POST | `/api/ai/flashcards` | – | Generate flashcards |
+| GET | `/api/user/dashboard` | ✅ | Stats, streaks, quiz history |
+| POST | `/api/user/track` | ✅ | Log watch time / app-open time |
+| GET | `/api/feed` | – | Community feed of public playlists |
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Redis-backed transcript cache (survives restarts, shared across instances)
+- [ ] Background job queue (BullMQ) for transcript + AI generation
+- [ ] Rate limiting refinements on AI endpoints
+- [ ] Vector search across transcript content (semantic search)
+- [ ] WebSocket support for real-time quiz collaboration
+- [ ] Migrate tracking writes to atomic MongoDB operators
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Open a pull request describing what you changed and why
+
+Please open an issue first for larger changes, so the approach can be discussed before implementation.
 
 ---
 
 ## 📝 License
 
-VideoInsight is licensed under the **MIT License** — free to use for personal and educational purposes. See `LICENSE` for details.
-
----
-
-## 👥 Contributors
-
-- **Lead Developer:** Md Sahebuddin Ansari ([@Saheb142003](https://github.com/Saheb142003)) — Full Stack Developer
-
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+Licensed under the **MIT License** — free to use for personal and educational purposes. See [`LICENSE`](./LICENSE) for full details.
 
 ---
 
 ## 📬 Contact
 
-- **Website:** [https://videoinsight.netlify.app](https://videoinsight.netlify.app)
-- **GitHub:** [https://github.com/Saheb142003](https://github.com/Saheb142003)
-- **LinkedIn:** [https://www.linkedin.com/in/saheb142003](https://www.linkedin.com/in/saheb142003)
-- **Email:** <saheb142003@gmail.com>
+- **Live App:** [video-insight-five.vercel.app](https://video-insight-five.vercel.app)
+- **GitHub:** [github.com/itsshivamnith/videoInsight](https://github.com/itsshivamnith/videoInsight)
+
+---
+
+<p align="center">Built with ❤️ as a learning project — powered by Google Gemini AI and the YouTube Data API</p>
